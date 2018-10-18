@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
-## Usage: ./compile_latex.py filename (i.e. minus the .tex extension)
+# Usage: ./compile_latex.py filename (i.e. minus the .tex extension)
 
-import glob, os, subprocess, sys
+import os
+import subprocess
+import sys
+
 
 def remove_files():
     extensions = ['.aux', '.bbl', '.blg', '.log', '.nav', '.out', '.snm', '.toc', '.vrb', '.dvi']
     for ext in extensions:
         if os.path.exists(sys.argv[1] + ext):
             os.remove(sys.argv[1] + ext)
+
 
 # remove existing files that are not necessary to keep
 remove_files()
@@ -26,8 +30,7 @@ commands = [
     ]
 
 # execute commands
-for compile in commands:
-    subprocess.call(compile)
+for compileme in commands:
+    subprocess.call(compileme)
 
 remove_files()
-
